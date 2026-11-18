@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestão da Produção | Estudo de Caso - EletroPredial</title>
+<style>
+:root{--bg:#0b1220;--panel:#121e31;--panel2:#18283f;--line:#2b405e;--txt:#edf3fb;--muted:#a9bad0;--accent:#38bdf8;--accent2:#f59e0b;--ok:#34d399;--danger:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#08101deF;border-bottom:1px solid var(--line);padding:13px 4%;display:flex;justify-content:space-between;align-items:center;gap:12px}
+header strong{letter-spacing:.5px}header small{color:var(--muted)}.progress{height:7px;background:#26364d;border-radius:9px;overflow:hidden;margin-top:7px}.progress span{display:block;height:100%;width:0;background:var(--accent);transition:.2s}
+.wrap{max-width:1100px;margin:25px auto;padding:0 18px 70px}.hero{padding:28px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#172b45,#101a2b)}
+h1{font-size:clamp(25px,4vw,38px);line-height:1.15;margin:5px 0 12px}h2{font-size:23px;margin:0 0 14px}h3{font-size:17px;color:#bfeaff;margin:20px 0 8px}
+p{margin:8px 0}.muted{color:var(--muted)}.tag{display:inline-block;padding:4px 9px;border:1px solid #3a5879;border-radius:20px;color:#bfeaff;font-size:12px;margin:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}.stat b{font-size:23px;color:var(--accent);display:block}
+section{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;scroll-margin-top:90px}
+.case{background:#17283e;border-left:4px solid var(--accent2);padding:15px;border-radius:8px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{background:#20344e;color:#d9efff}tr:nth-child(even){background:#142238}
+label{display:block;font-weight:bold;margin:13px 0 5px;color:#dbeafe}.blank-line{display:block;height:28px;border-bottom:1px solid #7890aa}.answer-space{height:62px;border-bottom:1px solid #344a65;margin:8px 0 14px}.question .answer-space{min-height:68px}input,textarea,select{width:100%;padding:11px;border-radius:8px;border:1px solid #425a78;background:#0c1728;color:var(--txt);font:inherit}textarea{min-height:105px;resize:vertical}input:focus,textarea:focus,select:focus{outline:2px solid var(--accent)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.btn{border:0;border-radius:8px;padding:11px 16px;background:var(--accent);color:#062033;font-weight:bold;cursor:pointer;margin:6px 5px 0 0}.btn.secondary{background:#2b405e;color:var(--txt)}.btn.warn{background:var(--accent2);color:#251600}.nav{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}.nav a{color:#bfeaff;text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:7px;font-size:13px}
+.note{border:1px dashed #55708f;border-radius:8px;padding:12px;color:var(--muted);margin:12px 0}.rubric li{margin:6px 0}.question{padding:14px;border:1px solid var(--line);border-radius:9px;margin:12px 0;background:#101b2c}.question .n{color:var(--accent);font-weight:bold}
+footer{color:var(--muted);text-align:center;margin:25px 0;font-size:12px}
+@media print{header,.nav,.btn{display:none!important}body{background:white;color:#111}section,.hero,.card,.stat{background:white;color:#111;border:1px solid #aaa;break-inside:avoid}.blank-line,.answer-space{border-color:#888}th{background:#ddd;color:#111}}
+</style>
+</head>
+<body oncontextmenu="return false">
+<header><div><strong>JÉFFERSON AZEVEDO | GESTÃO DA PRODUÇÃO</strong><br><small>Estudo de caso técnico • EletroPredial Serviços</small></div></header>
+<div class="wrap">
+<div class="hero">
+<span class="tag">ATIVIDADE AVALIATIVA</span><span class="tag">ESTUDO DE CASO</span><span class="tag">NÍVEL AVANÇADO</span>
+<h1>Da ordem de serviço à entrega: diagnóstico e melhoria do processo produtivo</h1>
+<p>Você foi contratado como analista de processos para diagnosticar falhas operacionais em uma empresa de instalações elétricas prediais. Sua missão é transformar dados de produção em decisões técnicas justificadas.</p>
+<p><b>Tempo estimado:</b> 4 a 5 horas • <b>Entrega:</b> relatório técnico individual, com cálculos, diagramas e plano de ação.</p>
+</div>
+<div class="nav">
+<a href="#identificacao">Identificação</a><a href="#cenario">Cenário</a><a href="#dados">Dados</a><a href="#pert">PERT</a><a href="#fluxo">Fluxograma</a><a href="#lead">Lead Time</a><a href="#lean">Desperdícios</a><a href="#qualidade">Qualidade</a><a href="#ishikawa">Ishikawa</a><a href="#acao">Plano de ação</a><a href="#conclusao">Conclusão</a>
+</div>
+<section id="identificacao">
+<h2>01. Identificação do participante</h2>
+<div class="cols">
+<div><label>Nome completo</label><span class="blank-line"></span></div>
+<div><label>Matrícula</label><span class="blank-line"></span></div>
+<div><label>Turma</label><span class="blank-line"></span></div>
+<div><label>Data</label><span class="blank-line"></span></div>
+</div>
+<div class="note">A análise deve ser individual. As respostas precisam demonstrar domínio dos dados do caso. Respostas genéricas, sem referência aos números, etapas e condições descritas, não serão consideradas justificativas técnicas.</div>
+</section>
+<section id="cenario">
+<h2>02. Contextualização: Empresa EletroPredial Serviços</h2>
+<div class="case">
+<p>A EletroPredial Serviços executa instalações elétricas de baixa tensão em residências e pequenos edifícios comerciais. A empresa recebeu um contrato para concluir a instalação elétrica de <b>12 apartamentos de um edifício residencial</b>, incluindo infraestrutura, passagem de condutores, montagem de quadros, instalação de dispositivos, identificação e testes.</p>
+<p>O prazo contratual é de 15 dias úteis. Nas últimas obras, a empresa registrou atrasos, retrabalho, deslocamentos desnecessários, falta de materiais no posto de trabalho e divergências entre projeto e execução.</p>
+<p>A gerência determinou que a equipe apresente um diagnóstico do processo e um plano de melhoria que reduza o prazo, preserve a qualidade e respeite os requisitos de segurança aplicáveis.</p>
+</div>
+<h3>Seu papel profissional</h3>
+<p>Você integra a equipe de melhoria contínua. Não basta listar ferramentas: deverá selecionar, aplicar e interpretar cada ferramenta, relacionando os resultados às decisões gerenciais. Toda recomendação precisa indicar qual problema resolve, como será implantada e como será medida.</p>
+<h3>Regras de desenvolvimento</h3>
+<ul><li>Utilize exclusivamente os dados do estudo de caso, salvo quando a questão solicitar uma hipótese claramente identificada.</li><li>Apresente fórmulas, substituição dos valores e unidades em todos os cálculos.</li><li>Não confunda tempo de execução com tempo de espera.</li><li>Não proponha redução de etapas de inspeção, testes ou medidas de segurança como forma de acelerar a produção.</li><li>Quando houver informação insuficiente, declare a limitação e indique qual dado precisa ser coletado.</li></ul>
+</section>
+<section id="dados">
+<h2>03. Base de dados operacional</h2>
+<p>Considere a sequência macro do serviço e os dados coletados pela supervisão. Os tempos estão em horas úteis para o lote de 12 apartamentos, exceto quando indicado.</p>
+<table><thead><tr><th>Etapa</th><th>Atividade</th><th>Tempo de processamento</th><th>Espera / fila</th><th>Ocorrência observada</th></tr></thead><tbody>
+<tr><td>A</td><td>Análise de projeto e levantamento</td><td>3 h</td><td>2 h</td><td>Informações incompletas em 2 unidades</td></tr>
+<tr><td>B</td><td>Separação e requisição de materiais</td><td>2 h</td><td>5 h</td><td>Itens armazenados em locais diferentes</td></tr>
+<tr><td>C</td><td>Conferência e preparação do local</td><td>1,5 h</td><td>1 h</td><td>Área compartilhada com outras equipes</td></tr>
+<tr><td>D</td><td>Marcação e instalação de eletrodutos/caixas</td><td>8 h</td><td>3 h</td><td>Correções por divergência de marcação</td></tr>
+<tr><td>E</td><td>Passagem e identificação de condutores</td><td>6 h</td><td>4 h</td><td>Falta de identificação em parte dos cabos</td></tr>
+<tr><td>F</td><td>Montagem do quadro e dispositivos</td><td>5 h</td><td>2 h</td><td>Componentes chegam em remessas distintas</td></tr>
+<tr><td>G</td><td>Inspeção, ensaios e testes</td><td>3 h</td><td>6 h</td><td>Retrabalho em 3 apartamentos</td></tr>
+<tr><td>H</td><td>Correções, documentação e entrega</td><td>4 h</td><td>2 h</td><td>Registros preenchidos ao final</td></tr>
+</tbody></table>
+<h3>Dados complementares de desempenho</h3>
+<table><tr><th>Indicador</th><th>Resultado observado</th><th>Meta gerencial proposta</th></tr>
+<tr><td>Unidades entregues sem retrabalho na primeira inspeção</td><td>9 de 12</td><td>11 de 12 ou mais</td></tr>
+<tr><td>Horas de retrabalho registradas</td><td>12 h por lote</td><td>Até 4 h por lote</td></tr>
+<tr><td>Deslocamentos para buscar materiais</td><td>18 ocorrências por lote</td><td>Até 5 ocorrências</td></tr>
+<tr><td>Materiais separados corretamente</td><td>82% dos kits</td><td>98% ou mais</td></tr>
+<tr><td>Ordens com documentação completa no primeiro envio</td><td>75%</td><td>100%</td></tr>
+<tr><td>Equipe disponível</td><td>1 encarregado + 3 eletricistas + 1 ajudante</td><td>Sem aumento de quadro</td></tr></table>
+<h3>Registro de ocorrências</h3>
+<ul><li>Em dois apartamentos, caixas foram instaladas fora da posição prevista e precisaram ser reposicionadas.</li><li>O ajudante interrompeu a preparação três vezes para localizar componentes e ferramentas.</li><li>Uma equipe iniciou a passagem de condutores antes da liberação formal da conferência da infraestrutura.</li><li>Foram identificados dois circuitos sem etiqueta legível durante a inspeção.</li><li>O encarregado informou que não existe padrão único de checklist de entrega.</li><li>O almoxarifado recebe solicitações por mensagens sem formulário padronizado.</li></ul>
+<div class="note"><b>Atenção:</b> os dados não informam custos unitários, produtividade individual, distância percorrida, taxa de defeitos por tipo nem disponibilidade diária de cada profissional. Não invente esses valores como se fossem dados reais.</div>
+</section>
+<section id="pert">
+<h2>04. Planejamento e controle: PERT</h2>
+<p>Para elaborar a rede PERT, utilize a tabela de atividades abaixo. As durações são estimativas em horas úteis para o lote completo. A atividade só pode iniciar após a conclusão de todas as suas predecessoras.</p>
+<table><tr><th>Código</th><th>Atividade</th><th>Predecessora(s)</th><th>Duração (h)</th></tr>
+<tr><td>A</td><td>Levantamento e validação do projeto</td><td>—</td><td>3</td></tr><tr><td>B</td><td>Separação e conferência de materiais</td><td>A</td><td>4</td></tr><tr><td>C</td><td>Preparação e liberação das frentes</td><td>A</td><td>2</td></tr><tr><td>D</td><td>Infraestrutura: eletrodutos e caixas</td><td>B, C</td><td>8</td></tr><tr><td>E</td><td>Passagem e identificação de condutores</td><td>D</td><td>6</td></tr><tr><td>F</td><td>Montagem de quadros e dispositivos</td><td>E</td><td>5</td></tr><tr><td>G</td><td>Inspeção e ensaios</td><td>F</td><td>3</td></tr><tr><td>H</td><td>Correções e reinspeção, se necessárias</td><td>G</td><td>4</td></tr><tr><td>I</td><td>Documentação e entrega</td><td>G</td><td>2</td></tr></table>
+<div class="question"><span class="n">Questão 4.1</span><p>Construa a rede PERT, representando todas as atividades, suas durações, dependências e os pontos de início e término. Você pode desenhar à mão e inserir a imagem no relatório ou descrever a rede com clareza.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 4.2</span><p>Calcule o início mais cedo (ES), término mais cedo (EF), início mais tarde (LS), término mais tarde (LF) e a folga total de cada atividade. Demonstre o procedimento.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 4.3</span><p>Identifique o caminho crítico e a duração mínima estimada do projeto. Explique por que uma atividade crítica exige controle diferenciado.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 4.4</span><p>Se a atividade D atrasar 2 horas, qual será o impacto no prazo final? E se a atividade C atrasar 2 horas? Compare os dois cenários usando as folgas calculadas.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 4.5</span><p>Proponha duas medidas de gestão para proteger o caminho crítico sem comprometer inspeções, ensaios ou segurança. Indique o responsável e o indicador de controle.</p><div class="answer-space"></div></div>
+</section>
+<section id="fluxo">
+<h2>05. Mapeamento do processo: Fluxograma</h2>
+<p>Desenvolva um fluxograma do processo desde o recebimento da ordem de serviço até a entrega técnica. O fluxograma deverá apresentar início/fim, atividades, decisões, entradas/saídas e pontos de inspeção.</p>
+<div class="question"><span class="n">Questão 5.1</span><p>Desenhe o fluxo atual (AS IS), incluindo pelo menos dois pontos de decisão. Um deles deverá representar a decisão após a inspeção: aprovado ou reprovado.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 5.2</span><p>Identifique no fluxo onde ocorrem espera, transporte, movimentação, retrabalho e risco de iniciar uma etapa sem liberação. Marque cada ocorrência com uma legenda.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 5.3</span><p>Elabore o fluxo futuro (TO BE), após as melhorias. Explique pelo menos quatro mudanças em relação ao fluxo atual e como cada uma reduz falhas ou esperas.</p><div class="answer-space"></div></div>
+</section>
+<section id="lead">
+<h2>06. Análise do Lead Time</h2>
+<p>Utilize os tempos de processamento e espera da tabela operacional. Considere, para este exercício, que as etapas são sequenciais no fluxo atual e que os tempos informados não se sobrepõem.</p>
+<div class="question"><span class="n">Questão 6.1</span><p>Calcule o tempo total de processamento (soma dos tempos de execução) e o tempo total de espera (soma das filas). Apresente a memória de cálculo.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 6.2</span><p>Calcule o Lead Time total do fluxo atual e a relação percentual entre tempo de processamento e Lead Time. Interprete o resultado do ponto de vista da gestão da produção.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 6.3</span><p>Qual etapa apresenta a maior espera? Qual é a hipótese operacional mais plausível para essa fila, com base no caso? Diferencie fato observado de hipótese.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 6.4</span><p>Simule um cenário de melhoria no qual a empresa reduza em 30% o tempo total de espera, mantendo o processamento constante. Calcule o novo Lead Time e a redução absoluta e percentual.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 6.5</span><p>Explique por que reduzir Lead Time não significa simplesmente acelerar a execução das tarefas. Relacione sua resposta a fluxo, qualidade, segurança e trabalho em processo.</p><div class="answer-space"></div></div>
+</section>
+<section id="lean">
+<h2>07. Identificação dos desperdícios – Lean Manufacturing</h2>
+<p>Analise o caso e identifique desperdícios observados ou sustentados por evidências. Utilize as categorias: transporte, estoque, movimentação, espera, superprocessamento, superprodução, defeitos/retrabalho e potencial humano não aproveitado.</p>
+<table><tr><th>Categoria</th><th>Evidência do caso</th><th>Consequência na produção</th><th>Ação de eliminação/redução</th></tr>
+<tr><td>Transporte</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Estoque</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Movimentação</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Espera</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Superprocessamento</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Superprodução</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Defeitos/retrabalho</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr><tr><td>Potencial humano</td><td>Preencher</td><td>Preencher</td><td>Preencher</td></tr></table>
+<div class="question"><span class="n">Questão 7.1</span><p>Selecione os três desperdícios que mais prejudicam o desempenho da EletroPredial. Crie uma priorização técnica, explicando o critério utilizado. Não basta afirmar que todos são importantes.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 7.2</span><p>Proponha uma organização do posto de trabalho com 5S. Descreva uma ação concreta para cada senso e indique como a equipe verificará sua manutenção.</p><div class="answer-space"></div></div>
+</section>
+<section id="qualidade">
+<h2>08. Ferramentas da qualidade e indicadores</h2>
+<div class="question"><span class="n">Questão 8.1 – Pareto</span><p>Com os registros disponíveis, explique quais dados adicionais seriam necessários para construir um Pareto confiável das causas de retrabalho. Em seguida, proponha uma ficha de coleta com no mínimo cinco campos e justifique cada campo.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 8.2 – Indicadores</span><p>Calcule a taxa de unidades aprovadas na primeira inspeção. Calcule também a quantidade de unidades reprovadas. Compare o resultado com a meta gerencial e indique a lacuna.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 8.3 – PDCA</span><p>Estruture um ciclo PDCA para reduzir as horas de retrabalho de 12 h para no máximo 4 h por lote. Defina planejamento, execução, verificação e ação de padronização/correção.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 8.4 – Controle</span><p>Escolha três indicadores para acompanhar semanalmente. Para cada indicador, informe fórmula, unidade, frequência, responsável e meta. Pelo menos um indicador deverá medir qualidade e outro fluxo/prazo.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 8.5 – Padronização</span><p>Elabore a estrutura de um checklist de liberação da infraestrutura antes da passagem de condutores. Inclua itens de conferência documental, execução, identificação, segurança e registro de aprovação. Não substitua requisitos técnicos por opinião.</p><div class="answer-space"></div></div>
+</section>
+<section id="ishikawa">
+<h2>09. Diagrama de Ishikawa – Causa e efeito</h2>
+<p>Problema central: <b>“Atrasos e retrabalho recorrente na execução das instalações elétricas prediais.”</b></p>
+<p>Utilize as categorias 6M: Método, Mão de obra, Máquina/equipamento, Material, Meio ambiente e Medição. Para cada categoria, levante causas possíveis sustentadas pelo caso ou marque explicitamente como hipótese a validar.</p>
+<div class="question"><span class="n">Questão 9.1</span><p>Construa o diagrama de Ishikawa completo, com no mínimo duas causas por categoria. Diferencie causas comprovadas pelas informações do caso e hipóteses que dependem de investigação.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 9.2</span><p>Selecione a causa que considera mais provável de contribuir para o problema central. Justifique com evidências do cenário e explique como verificaria se ela é causa raiz, e não apenas um sintoma.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 9.3</span><p>Aplique a técnica dos 5 Porquês à causa selecionada. Apresente uma cadeia lógica de perguntas e respostas, evitando saltos de raciocínio. Finalize com uma causa passível de ação gerencial.</p><div class="answer-space"></div></div>
+</section>
+<section id="acao">
+<h2>10. Plano de ação – 5W2H</h2>
+<p>Com base no diagnóstico, desenvolva um plano com pelo menos cinco ações. As ações devem atacar causas identificadas no Ishikawa e desperdícios priorizados. Inclua uma ação de padronização, uma de organização de materiais, uma de controle da qualidade e uma de gestão do fluxo.</p>
+<table><tr><th>O quê (What)</th><th>Por quê (Why)</th><th>Onde (Where)</th><th>Quando (When)</th><th>Quem (Who)</th><th>Como (How)</th><th>Quanto (How much)</th></tr>
+<tr><td>Plano 1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Plano 2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Plano 3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Plano 4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Plano 5</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
+<div class="question"><span class="n">Questão 10.1</span><p>Ordene as ações por prioridade e explique qual deve ser iniciada primeiro. Considere impacto, urgência, viabilidade e dependências entre ações.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 10.2</span><p>Defina como a empresa verificará, após 30 dias, se as ações produziram melhoria real. Informe quais dados serão comparados com a linha de base apresentada no caso.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 10.3</span><p>Explique quais riscos podem surgir durante a implantação das melhorias e como preveni-los. Inclua riscos de resistência da equipe, falha de abastecimento, documentação incompleta e pressão por prazo.</p><div class="answer-space"></div></div>
+</section>
+<section id="conclusao">
+<h2>11. Parecer técnico final</h2>
+<div class="question"><span class="n">Questão 11.1</span><p>Redija um parecer técnico de 15 a 25 linhas para a gerência da EletroPredial. O parecer deverá apresentar: diagnóstico principal, evidências numéricas, gargalo prioritário, impacto no Lead Time, causa raiz selecionada, ações recomendadas e resultados esperados.</p><div class="answer-space"></div></div>
+<div class="question"><span class="n">Questão 11.2 – Defesa individual</span><p>Prepare-se para explicar oralmente, sem leitura integral, os seguintes pontos: caminho crítico; cálculo do Lead Time; desperdício prioritário; causa raiz do Ishikawa; e justificativa da primeira ação do 5W2H. O professor poderá solicitar que você refaça um cálculo ou altere uma condição do cenário.</p><label>Qual decisão técnica do seu trabalho você considera mais importante? Por quê?</label><div class="answer-space"></div></div>
+<h3>Critérios de avaliação sugeridos – 100 pontos</h3>
+<ul class="rubric"><li><b>PERT e planejamento – 15 pontos:</b> rede correta, cálculos, caminho crítico e análise de atraso.</li><li><b>Fluxograma – 10 pontos:</b> representação lógica do processo atual e futuro.</li><li><b>Lead Time – 10 pontos:</b> cálculos, unidades e interpretação.</li><li><b>Lean e desperdícios – 10 pontos:</b> identificação com evidências e priorização.</li><li><b>Ferramentas da qualidade – 15 pontos:</b> Pareto, PDCA, indicadores e checklist.</li><li><b>Ishikawa e 5 Porquês – 15 pontos:</b> causas coerentes, distinção entre fato e hipótese e análise de causa raiz.</li><li><b>Plano 5W2H – 15 pontos:</b> ações viáveis, responsáveis, prazos, custos e indicadores.</li><li><b>Parecer e defesa – 10 pontos:</b> consistência técnica, domínio dos cálculos e capacidade de justificar decisões.</li></ul>
+<div class="case"><b>Orientação de entrega:</b> organize os diagramas, tabelas e cálculos em um relatório técnico. O arquivo final deverá conter identificação, desenvolvimento de todas as etapas, conclusão e referências técnicas consultadas. Imagens de diagramas devem estar legíveis e identificadas.</div>
+<div class="note"><b>Integridade acadêmica:</b> o uso de ferramentas digitais não substitui a autoria e o domínio do conteúdo. O professor poderá solicitar explicação individual, refazer cálculos com dados alterados e questionar a relação entre evidências e conclusões. Respostas sem rastreabilidade aos dados do caso poderão ser desconsideradas.</div>
+<button class="btn secondary" onclick="window.print()">Imprimir / salvar em PDF</button>
+</section>
+<footer>JÉFFERSON AZEVEDO • Material didático de Gestão da Produção • Estudo de caso fictício para fins educacionais</footer>
+</div>
+<script>
+document.addEventListener('copy',e=>e.preventDefault());
+document.addEventListener('cut',e=>e.preventDefault());
+document.addEventListener('paste',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['c','x','u','s'].includes(e.key.toLowerCase())){e.preventDefault();}});
+</script>
+</body></html>
